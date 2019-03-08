@@ -1,0 +1,16 @@
+import React from 'react'
+import ScenarioSummaryDragNDrop from './ScenarioSummaryDragNDrop'
+
+const ScenarioListDragNDrop = ({scenarios}) => {
+    return (
+        <div className="project-list section">
+            { scenarios && scenarios.map(scenario => {
+                return (
+                    <ScenarioSummaryDragNDrop scenario={scenario} key={scenario.id} />
+                )
+            })}
+        </div>
+    )
+}
+
+export default ScenarioListDragNDrop
