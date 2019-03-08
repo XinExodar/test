@@ -1,0 +1,14 @@
+import React from 'react'
+
+
+const QueteSummaryDragNDrop = ({quete}) => {
+    return (
+        <div className="card z-depth-0 project-summary">
+            <div className="card-content grey-text text-darken-3">
+                <span className="card-title ">{quete.nom}</span>
+            </div>
+        </div>
+    )
+}
+
+export default QueteSummaryDragNDrop
