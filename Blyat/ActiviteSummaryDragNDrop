@@ -1,0 +1,27 @@
+import React from 'react'
+
+
+const onDragStart =(ev, id) =>{
+    console.log('dragstart:', id);
+    ev.dataTransfer.setData("id", id);
+}
+
+const ActiviteSummaryDragNDrop = ({activite}) => {
+
+    return (
+
+
+        <div className="card z-depth-0 project-summary">
+            <div className="card-content grey-text text-darken-3"
+                 draggable
+                 onDragStart={(e) => onDragStart(e, activite.nom)}
+            >
+                <span className="card-title ">{activite.nom}</span>
+            </div>
+        </div>
+    )
+}
+
+
+
+export default ActiviteSummaryDragNDrop
