@@ -1,0 +1,145 @@
+import React, { Component } from 'react'
+import Modal from 'react-responsive-modal';
+import CreateActivite from '../../../activites/CreateActivite'
+import ActiviteList from '../../../activites/ActiviteList'
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {firestoreConnect} from "react-redux-firebase";
+import ActiviteListDragAndDrop from "../../../activites/ActiviteListDragAndDrop";
+import '../../../../../App.css'
+
+
+
+class PageActivite extends Component {
+
+    stateActivite = {
+        openActivite: false,
+    };
+
+    stateListActivity = {
+        lists: [
+            {name:"Angular", category:"d", bgcolor:"yellow"},
+            {name:"React", category:"d", bgcolor:"pink"},
+            {name:"Vue", category:"d", bgcolor:"skyblue"}
+        ]
+    }
+
+    onDrop = (ev, cat) => {
+        let id = ev.dataTransfer.getData("id")
+        let lists = this.stateListActivity.lists.filter((list) => {
+            if (list.name === id){
+                list.category = cat;
+            }
+            return list
+        });
+
+        this.setState({
+            ...this.stateListActivity,
+            lists
+        });
+
+    }
+
+    onDragOver =(ev) =>{
+        ev.preventDefault();
+    }
+
+    onDragStart =(ev, id) =>{
+        console.log('dragstart:', id);
+        ev.dataTransfer.setData("id", id);
+    }
+
+    onOpenModalActivite = () => {
+        this.setState(this.stateActivite ={ openActivite: true });
+    };
+
+    onCloseModalActivite = () => {
+        this.setState(this.stateActivite ={ openActivite: false });
+    };
+
+
+    render() {
+        const { activites } = this.props;
+        const { openActivite } = this.stateActivite;
+
+        var lists = {
+            m1:[],
+            m2:[],
+            m3:[],
+            m4:[],
+            m5:[],
+            m6:[],
+            m7:[],
+            m8:[],
+            m9:[],
+            d:[]
+        }
+
+
+        this.stateListActivity.lists.forEach((t) => {
+            lists[t.category].push(<div key={t.name}
+                                        onDragStart={(e) => this.onDragStart(e, t.name)}
+                                        draggable
+                                        className= "draggable"
+                                        style = {{BackgroundColor: t.bgcolor}}
+            >
+                {t.name}
+            </div>
+
+            );
+        });
+
+        return (
+
+
+            <div className="row">
+                <div className="col s3 m3 l3">
+                    <ActiviteList activites={activites} />
+                </div>
+                <div className="col s6 m6 l6" >
+                    <div>
+
+                    </div>
+                </div>
+                <div className="col s3 m3 l3"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "d")}
+                >
+                    <div className="container">
+                        <div className="divider"></div>
+                        <div className="section">
+                            <button className="waves-effect waves-light btn modal-trigger" onClick={this.onOpenModalActivite}>Nouvelle Activite</button>
+                            <Modal open={openActivite} onClose={this.onCloseModalActivite} center>
+                                <CreateActivite/>
+                            </Modal>
+                            <div className="section">
+                                <div>
+                                    <ActiviteListDragAndDrop activites={activites} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        )
+
+    }
+
+}
+
+const mapStateToProps = (state) => {
+    // console.log(state);
+    return {
+        activites: state.firestore.ordered.activites,
+
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'activites' },
+
+    ])
+)(PageActivite)
