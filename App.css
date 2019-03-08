@@ -1,0 +1,182 @@
+.App {
+  text-align: center;
+  width: 95%;
+  margin: 15px auto;
+}
+
+.container-drag{
+  text-align: center;
+}
+
+.milieu1{
+   position: absolute;
+   width:100px;
+   height: 10vh;
+   left: 300px;
+   top: 30px;
+   background-color: #EEEEEE;
+   border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+ }
+.milieu2{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 400px;
+  top: 30px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu3{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 500px;
+  top: 30px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu4{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 600px;
+  top: 30px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu5{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 700px;
+  top: 30px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu6{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 300px;
+  top: 130px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu7{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 400px;
+  top: 130px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu8{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 500px;
+  top: 130px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu9{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 600px;
+  top: 130px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+.milieu10{
+  position: absolute;
+  width:100px;
+  height: 10vh;
+  left: 700px;
+  top: 130px;
+  background-color: #EEEEEE;
+  border-right: 1px dotted;
+  border-top: 1px dotted;
+  border-left: 1px dotted;
+}
+
+.header {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  background-color: #E0E0E0;
+  width: 100%;
+}
+
+.task-header {
+  display: inline-block;
+  background-color: skyblue;
+  width:100%;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.droite {
+  position: absolute;
+  width: 150px;
+  height: 100vh;
+  right: 0;
+  top: 30px;
+  background-color: #9E9E9E;
+  border-left: 1px dotted;
+}
+
+.draggable{
+  width: 100px;
+  height: 100px;
+  background_color: yellow;
+  margin: 5px auto;
+  line-height: 5em;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
