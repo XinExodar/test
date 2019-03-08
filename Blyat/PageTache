@@ -1,0 +1,84 @@
+import React, { Component } from 'react'
+import CreateTache from '../../../taches/CreateTache'
+import TacheList from '../../../taches/TacheList'
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {firestoreConnect} from "react-redux-firebase";
+import TacheListDragNDrop from "../../TacheListDragNDrop";
+import Modal from 'react-responsive-modal';
+
+class PageTache extends Component {
+
+
+    stateTache = {
+        openTache: false,
+    };
+
+
+    onOpenModalTache = () => {
+        this.setState(this.stateTache ={ openTache: true });
+    };
+
+    onCloseModalTache = () => {
+        this.setState(this.stateTache ={ openTache: false });
+    };
+
+
+
+
+    render() {
+        const { taches } = this.props;
+        const { openTache } = this.stateTache;
+        return (
+
+
+            <div className="row">
+                <div className="col s3 m3 l3">
+                    <div>
+                        <ul>
+                            <li>
+                                <TacheList taches={taches} />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="col s6 m6 l6">
+
+                </div>
+                <div className="col s3 m3 l3">
+                    <div className="container">
+                        <div className="divider"></div>
+                        <div className="section">
+                            <button className="waves-effect waves-light btn modal-trigger" onClick={this.onOpenModalTache}>Nouvelle Tache</button>
+                            <Modal open={openTache} onClose={this.onCloseModalTache} center>
+                                <CreateTache/>
+                            </Modal>
+                        </div>
+                        <div className="section">
+                            <TacheListDragNDrop taches={taches} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        )
+
+    }
+
+}
+
+const mapStateToProps = (state) => {
+    // console.log(state);
+    return {
+        taches: state.firestore.ordered.taches,
+
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'taches' },
+
+    ])
+)(PageTache)
