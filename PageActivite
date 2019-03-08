@@ -1,0 +1,234 @@
+import React, { Component } from 'react'
+import Modal from 'react-responsive-modal';
+import CreateActivite from '../../../activites/CreateActivite'
+import ActiviteList from '../../../activites/ActiviteList'
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {firestoreConnect} from "react-redux-firebase";
+import ActiviteListDragAndDrop from "../../../activites/ActiviteListDragAndDrop";
+import '../../../../../App.css'
+
+
+
+class PageActivite extends Component {
+
+    stateActivite = {
+        openActivite: false,
+    };
+
+    stateListActivity = {
+        lists: [
+            {name:"Angular", category:"d", bgcolor:"yellow"},
+            {name:"React", category:"d", bgcolor:"pink"},
+            {name:"Vue", category:"d", bgcolor:"skyblue"}
+        ]
+    }
+
+    onDrop = (ev, cat) => {
+        let id = ev.dataTransfer.getData("id")
+        let lists = this.stateListActivity.lists.filter((list) => {
+            if (list.name === id){
+                list.category = cat;
+            }
+            return list
+        });
+
+        this.setState({
+            ...this.stateListActivity,
+            lists
+        });
+
+    }
+
+    onDragOver =(ev) =>{
+        ev.preventDefault();
+    }
+
+    onDragStart =(ev, id) =>{
+        console.log('dragstart:', id);
+        ev.dataTransfer.setData("id", id);
+    }
+
+    onOpenModalActivite = () => {
+        this.setState(this.stateActivite ={ openActivite: true });
+    };
+
+    onCloseModalActivite = () => {
+        this.setState(this.stateActivite ={ openActivite: false });
+    };
+
+
+    render() {
+        const { activites } = this.props;
+        const { openActivite } = this.stateActivite;
+
+        var lists = {
+            m1:[],
+            m2:[],
+            m3:[],
+            m4:[],
+            m5:[],
+            m6:[],
+            m7:[],
+            m8:[],
+            m9:[],
+            m10:[],
+            d:[]
+        }
+
+
+        this.stateListActivity.lists.forEach((t) => {
+            lists[t.category].push(<div key={t.name}
+                                        onDragStart={(e) => this.onDragStart(e, t.name)}
+                                        draggable
+                                        className= "draggable"
+                                        style = {{BackgroundColor: t.bgcolor}}
+            >
+                {t.name}
+            </div>
+
+            );
+        });
+
+        return (
+
+
+            <div>
+                <div className="">
+
+                </div>
+                <div className="milieu1"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m1")}
+                >
+                    {lists.m1}
+
+                </div>
+
+                <div className="milieu2"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m2")}
+                >
+                    {lists.m2}
+
+                </div>
+
+                <div className="milieu3"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m3")}
+                >
+                    {lists.m3}
+
+                </div>
+
+                <div className="milieu4"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m4")}
+                >
+                    {lists.m4}
+
+                </div>
+
+                <div className="milieu5"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m5")}
+                >
+                    {lists.m5}
+
+                </div>
+
+                <div className="milieu6"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m6")}
+                >
+                    {lists.m6}
+
+                </div>
+
+                <div className="milieu7"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m7")}
+                >
+                    {lists.m7}
+
+                </div>
+
+                <div className="milieu8"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m8")}
+                >
+                    {lists.m8}
+
+                </div>
+
+                <div className="milieu9"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m9")}
+                >
+                    {lists.m9}
+
+                </div>
+
+                <div className="milieu10"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "m10")}
+                >
+                    {lists.m10}
+
+                </div>
+
+                <div className="droite"
+                     onDragOver={(e) => this.onDragOver(e)}
+                     onDrop={(e) => this.onDrop(e, "d")}
+                >
+                    <div className="container">
+                        <div className="divider"></div>
+                        <div className="section">
+
+
+                            <div className="section">
+                                <div>
+                                    {lists.d}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        )
+
+    }
+
+}
+
+const mapStateToProps = (state) => {
+    // console.log(state);
+    return {
+        activites: state.firestore.ordered.activites,
+
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'activites' },
+
+    ])
+)(PageActivite)
+
+/*<div>
+    <ul>
+        <li>
+            <ActiviteList activites={activites} />
+        </li>
+    </ul>
+</div>
+
+<ActiviteListDragAndDrop activites={activites} />
+
+<button className="waves-effect waves-light btn modal-trigger" onClick={this.onOpenModalActivite}>Nouvelle Activite</button>
+                                <Modal open={openActivite} onClose={this.onCloseModalActivite} center>
+                                    <CreateActivite/>
+                                </Modal> */
