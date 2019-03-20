@@ -1,0 +1,30 @@
+import React from 'react'
+/*je le met quand même, il est supposé marcher mais 
+il ne reconnais pas activité pour une raison que j'ignore alors que lui donne en paramètre
+marchera mieux avec BDD ??*/
+
+const description = ( {node}, {activite}) => {
+    if (node !== -1){
+        return (
+            <div className="project-list section">
+                <div className="card z-depth-0 project-summary">
+                    <div className="card-content grey-text text-darken-3">
+                        <span className="card-title ">{activite[0].id}</span>
+                    </div>
+                    <div className="card-action">
+                        <ul>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        )
+    }else{
+        console.log(activite);
+        return null}
+
+}
+
+export default description
