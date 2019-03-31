@@ -14,7 +14,8 @@ class CreateEntite extends Component {
         console.log(activite.nodes[2]);
     }
     handleSubmit = (e) => {
-        activite.nodes.push(this.state);
+        e.preventDefault();
+        activite.listEntity.push(this.state);
         console.log(activite.nodes[2]);
 
     }
@@ -49,6 +50,14 @@ class CreateEntite extends Component {
                                 <label>
                                     <input name="group1" type="radio" id="Entite" value='PJ' onChange={this.handleChange} />
                                     <span>PJ</span>
+                                </label>
+                            </p>
+                        </div>
+                        <div className="col s1 offset-s3 ">
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" id="Entite" value='Objet' onChange={this.handleChange} />
+                                    <span>Objet</span>
                                 </label>
                             </p>
                         </div>

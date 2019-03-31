@@ -13,6 +13,7 @@ class CreateActivite extends Component {
         });
     }
     handleSubmit = (e) => {
+        e.preventDefault();
         activite.nodes.push(this.state);
 
     }
