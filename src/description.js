@@ -2,7 +2,13 @@ import React from 'react'
 import Links_details from './links_details'
 
 
+
+
+
 const description = (  {node,activite} ) => {
+
+
+
     if (node !== -1){
         return (
             <div className="project-list section">
@@ -17,7 +23,6 @@ const description = (  {node,activite} ) => {
             </div>
         )
     }else{
-        console.log(activite.nodes[2]);
         return null}
 
 }

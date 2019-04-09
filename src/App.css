@@ -31,7 +31,26 @@
     transform: rotate(360deg);
   }
 }
+.App{
+  display:flex;
+}
+.test{
+ max-height: 80%;
+  background-color: #999999;
+  }
 
+.entite-desc{
+  display:flex;
+}
+.liste-entite{
+  border:1px  solid #21252B;
+}
+.description{
+  border:1px  solid #21252B;
+}
+.row{
+  display:flex;
+}
 .box {
   background: #fff;
   border: 1px solid #999;
@@ -42,3 +61,4 @@
   padding: 10px;
   float: left;
 }
+

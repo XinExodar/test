@@ -13,11 +13,10 @@ const Entity = ({Entite}) => {
                         <p>Description:</p>
                         <span>{Entite.description}</span>
                     </div>
-
                 </div>
             </div>
         )
 
-}
+};
 
 export default Entity

@@ -11,12 +11,12 @@ class CreateEntite extends Component {
         this.setState({
             [e.target.id]: e.target.value
         });
-        console.log(activite.nodes[2]);
+
     }
     handleSubmit = (e) => {
         e.preventDefault();
         activite.listEntity.push(this.state);
-        console.log(activite.nodes[2]);
+
 
     }
     render() {

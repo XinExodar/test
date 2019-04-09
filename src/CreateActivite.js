@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import {activite} from './store'
+import Modal from "./App";
+
+
 
 class CreateActivite extends Component {
     state = {
